@@ -46,7 +46,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/auth',authRouter)
 //user routes
 app.use('/api/v1/user',authMiddleware,userRouter)
-  
+
+
+app.get('*',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,'./public','index.html'))
+})
   app.use('*',(req,res)=>{
     res.status(404).send('Resource not found')
 })
